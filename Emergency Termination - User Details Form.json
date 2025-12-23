@@ -1,0 +1,232 @@
+[
+  {
+    "version": 1,
+    "self": {
+      "type": "FORM_DEFINITION",
+      "id": "cdddc040-29c2-4872-9775-89317f02f313",
+      "name": "Emergency Termination - User Details Form"
+    },
+    "object": {
+      "id": "cdddc040-29c2-4872-9775-89317f02f313",
+      "name": "Emergency Termination - User Details Form",
+      "description": "Emergency Termination - User Details Form",
+      "owner": {
+        "type": "IDENTITY",
+        "id": "7a3da0b32bc2498381c81fe2bef4e233",
+        "name": ""
+      },
+      "usedBy": [],
+      "formInput": [
+        {
+          "id": "aethAccountId",
+          "type": "STRING",
+          "label": "aethAccountId",
+          "description": ""
+        },
+        {
+          "id": "displayName",
+          "type": "STRING",
+          "label": "displayName",
+          "description": ""
+        },
+        {
+          "id": "employeeType",
+          "type": "STRING",
+          "label": "employeeType",
+          "description": ""
+        },
+        {
+          "id": "email",
+          "type": "STRING",
+          "label": "email",
+          "description": ""
+        },
+        {
+          "id": "primaryDomain",
+          "type": "STRING",
+          "label": "primaryDomain",
+          "description": ""
+        }
+      ],
+      "formElements": [
+        {
+          "id": "734883545002",
+          "elementType": "SECTION",
+          "config": {
+            "alignment": "LEFT",
+            "description": "",
+            "formElements": [
+              {
+                "config": {
+                  "default": "",
+                  "description": "",
+                  "helpText": "",
+                  "label": "AethAccountId",
+                  "placeholder": "",
+                  "required": false
+                },
+                "elementType": "TEXT",
+                "id": "1612860697006",
+                "key": "aethAccountId",
+                "validations": []
+              },
+              {
+                "config": {
+                  "default": "",
+                  "description": "",
+                  "helpText": "",
+                  "label": "Display Name",
+                  "placeholder": "",
+                  "required": false
+                },
+                "elementType": "TEXT",
+                "id": "625233346597",
+                "key": "displayName",
+                "validations": []
+              },
+              {
+                "config": {
+                  "default": "",
+                  "description": "",
+                  "helpText": "",
+                  "label": "Employee Type",
+                  "placeholder": "",
+                  "required": false
+                },
+                "elementType": "TEXT",
+                "id": "503424284290",
+                "key": "employeeType",
+                "validations": []
+              },
+              {
+                "config": {
+                  "default": "",
+                  "description": "",
+                  "helpText": "",
+                  "label": "Email",
+                  "placeholder": "",
+                  "required": false
+                },
+                "elementType": "TEXT",
+                "id": "436195841776",
+                "key": "email",
+                "validations": []
+              },
+              {
+                "config": {
+                  "default": "",
+                  "description": "",
+                  "helpText": "",
+                  "label": "Primary Domain",
+                  "placeholder": "",
+                  "required": false
+                },
+                "elementType": "TEXT",
+                "id": "796742062276",
+                "key": "primaryDomain",
+                "validations": []
+              }
+            ],
+            "label": "User Details",
+            "labelStyle": "h2",
+            "showLabel": true
+          },
+          "validations": []
+        }
+      ],
+      "formConditions": [
+        {
+          "ruleOperator": "AND",
+          "rules": [
+            {
+              "sourceType": "INPUT",
+              "source": "aethAccountId",
+              "operator": "NOT_EM",
+              "valueType": "STRING",
+              "value": ""
+            }
+          ],
+          "effects": [
+            {
+              "effectType": "SET_DEFAULT_VALUE",
+              "config": {
+                "defaultValueLabel": "aethAccountId",
+                "element": "1612860697006"
+              }
+            },
+            {
+              "effectType": "SET_DEFAULT_VALUE",
+              "config": {
+                "defaultValueLabel": "displayName",
+                "element": "625233346597"
+              }
+            },
+            {
+              "effectType": "SET_DEFAULT_VALUE",
+              "config": {
+                "defaultValueLabel": "employeeType",
+                "element": "503424284290"
+              }
+            },
+            {
+              "effectType": "SET_DEFAULT_VALUE",
+              "config": {
+                "defaultValueLabel": "email",
+                "element": "436195841776"
+              }
+            },
+            {
+              "effectType": "SET_DEFAULT_VALUE",
+              "config": {
+                "defaultValueLabel": "primaryDomain",
+                "element": "796742062276"
+              }
+            },
+            {
+              "effectType": "DISABLE",
+              "config": {
+                "element": "1612860697006"
+              }
+            },
+            {
+              "effectType": "DISABLE",
+              "config": {
+                "element": "625233346597"
+              }
+            },
+            {
+              "effectType": "DISABLE",
+              "config": {
+                "element": "503424284290"
+              }
+            },
+            {
+              "effectType": "DISABLE",
+              "config": {
+                "element": "436195841776"
+              }
+            },
+            {
+              "effectType": "DISABLE",
+              "config": {
+                "element": "796742062276"
+              }
+            }
+          ]
+        }
+      ],
+      "formButtons": [
+        {
+          "id": "form-btn-submit",
+          "config": {
+            "alignment": "right",
+            "label": "Terminate",
+            "type": "submit"
+          }
+        }
+      ],
+      "created": "2025-07-15T07:14:09.474598777Z",
+      "modified": "2025-08-11T10:56:22.938879099Z"
+    }
+  }
+]

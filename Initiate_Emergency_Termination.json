@@ -1,0 +1,258 @@
+{
+  "id": "18709cf4-34a5-479f-aee2-88a290272fb9",
+  "name": "Initiate_Emergency_Termination",
+  "description": "Initiate_Emergency_Termination",
+  "definition": {
+    "start": "Interactive Form",
+    "steps": {
+      "Compare Numbers": {
+        "actionId": "sp:compare-numbers",
+        "choiceList": [
+          {
+            "comparator": "NumericEquals",
+            "nextStep": "Send Email",
+            "variableA.$": "$.hTTPRequest.statusCode",
+            "variableB": 200
+          }
+        ],
+        "defaultStep": "Send Email 1",
+        "displayName": "",
+        "type": "choice"
+      },
+      "Compare Numbers 1": {
+        "actionId": "sp:compare-numbers",
+        "choiceList": [
+          {
+            "comparator": "NumericEquals",
+            "nextStep": "Send Email",
+            "variableA.$": "$.hTTPRequest1.statusCode",
+            "variableB": 200
+          }
+        ],
+        "defaultStep": "Send Email 1",
+        "displayName": "",
+        "type": "choice"
+      },
+      "Compare Strings 1": {
+        "actionId": "sp:compare-strings",
+        "choiceList": [
+          {
+            "comparator": "StringEquals",
+            "nextStep": "HTTP Request",
+            "variableA.$": "$.getIdentity1.attributes.cloudLifecycleState",
+            "variableB": "active"
+          }
+        ],
+        "defaultStep": "Compare Strings 2",
+        "displayName": "",
+        "type": "choice"
+      },
+      "Compare Strings 2": {
+        "actionId": "sp:compare-strings",
+        "choiceList": [
+          {
+            "comparator": "StringEquals",
+            "nextStep": "HTTP Request 1",
+            "variableA.$": "$.getIdentity1.attributes.cloudLifecycleState",
+            "variableB": "prehire"
+          }
+        ],
+        "defaultStep": "End Step - Success",
+        "displayName": "",
+        "type": "choice"
+      },
+      "Compare Strings 3": {
+        "actionId": "sp:compare-strings",
+        "choiceList": [
+          {
+            "comparator": "StringMatches",
+            "nextStep": "Interactive Message",
+            "variableA.$": "$.getIdentity1.attributes.cloudLifecycleState",
+            "variableB": "^(terminated|rescinded)$"
+          }
+        ],
+        "defaultStep": "Interactive Form 1",
+        "displayName": "",
+        "type": "choice"
+      },
+      "Compare Strings 4": {
+        "actionId": "sp:compare-strings",
+        "choiceList": [
+          {
+            "comparator": "StringDoesNotEquals",
+            "nextStep": "Interactive Message 1",
+            "variableA.$": "$.getIdentity1.attributes.cloudAuthoritativeSource",
+            "variableB": "fe12c505518c43fab8ac62ba9a180b30"
+          }
+        ],
+        "defaultStep": "Compare Strings 3",
+        "displayName": "",
+        "type": "choice"
+      },
+      "End Step - Success": {
+        "actionId": "sp:operator-success",
+        "displayName": "",
+        "type": "success"
+      },
+      "Get Identity": {
+        "actionId": "sp:get-identity",
+        "attributes": {
+          "id.$": "$.trigger.launchedBy.id"
+        },
+        "displayName": "",
+        "nextStep": "Get Identity 1",
+        "type": "action",
+        "versionNumber": 2
+      },
+      "Get Identity 1": {
+        "actionId": "sp:get-identity",
+        "attributes": {
+          "id.$": "$.interactiveForm.formData.aethAccountId"
+        },
+        "displayName": "",
+        "nextStep": "Compare Strings 4",
+        "type": "action",
+        "versionNumber": 2
+      },
+      "HTTP Request": {
+        "actionId": "sp:http",
+        "attributes": {
+          "authenticationType": "OAuth",
+          "jsonRequestBody": {
+            "lifecycleStateId": "c0cff962d40d4af9af7214f7107d8c61"
+          },
+          "method": "post",
+          "oAuthClientId": "b00c136d683a42ec8b9d068f56248049",
+          "oAuthClientSecret": null,
+          "oAuthCredentialLocation": "oAuthInHeader",
+          "oAuthTokenUrl": "https://tenant.api.identitynow.com/oauth/token",
+          "requestContentType": "json",
+          "url": "https://tenant.api.identitynow.com/v3/identities/{{$.interactiveForm.formData.aethAccountId}}/set-lifecycle-state"
+        },
+        "displayName": "",
+        "nextStep": "Compare Numbers",
+        "type": "action",
+        "versionNumber": 2
+      },
+      "HTTP Request 1": {
+        "actionId": "sp:http",
+        "attributes": {
+          "authenticationType": "OAuth",
+          "jsonRequestBody": {
+            "lifecycleStateId": "876bad8792f547cdb24f5ac3ee4d843d"
+          },
+          "method": "post",
+          "oAuthClientId": "b00c136d683a42ec8b9d068f56248049",
+          "oAuthClientSecret": null,
+          "oAuthCredentialLocation": "oAuthInHeader",
+          "oAuthTokenUrl": "https://tenant.api.identitynow.com/oauth/token",
+          "requestContentType": "json",
+          "url": "https://tenant.api.identitynow.com/v3/identities/{{$.interactiveForm.formData.aethAccountId}}/set-lifecycle-state"
+        },
+        "displayName": "",
+        "nextStep": "Compare Numbers 1",
+        "type": "action",
+        "versionNumber": 2
+      },
+      "Interactive Form": {
+        "actionId": "sp:interactive-form",
+        "attributes": {
+          "formDefinitionId": "1e9f4a20-814e-45f6-bf0f-1873fd3a486f",
+          "interactiveProcessId.$": "$.trigger.interactiveProcessId",
+          "ownerId.$": "$.trigger.launchedBy.id",
+          "title": "Initiate Emergency Termination"
+        },
+        "displayName": "",
+        "nextStep": "Get Identity",
+        "type": "action",
+        "versionNumber": 1
+      },
+      "Interactive Form 1": {
+        "actionId": "sp:interactive-form",
+        "attributes": {
+          "formDefinitionId": "cdddc040-29c2-4872-9775-89317f02f313",
+          "inputForForm_aethAccountId.$": "$.getIdentity1.attributes.aethAccountId",
+          "inputForForm_displayName.$": "$.getIdentity1.attributes.displayName",
+          "inputForForm_email.$": "$.getIdentity1.attributes.email",
+          "inputForForm_employeeType.$": "$.getIdentity1.attributes.userType",
+          "inputForForm_primaryDomain.$": "$.getIdentity1.attributes.primaryDomain",
+          "interactiveProcessId.$": "$.trigger.interactiveProcessId",
+          "ownerId.$": "$.trigger.launchedBy.id",
+          "title": "User Details Form"
+        },
+        "displayName": "",
+        "nextStep": "Compare Strings 1",
+        "type": "action",
+        "versionNumber": 1
+      },
+      "Interactive Message": {
+        "actionId": "sp:interactive-message",
+        "attributes": {
+          "category": "ERROR",
+          "interactiveProcessId.$": "$.trigger.interactiveProcessId",
+          "message": "<p>Hello,<br><br>Immediate termination cannot be processed as this user is already terminated.</p>\n<p>Thank You,<br>myAccess Support</p>",
+          "ownerId.$": "$.trigger.launchedBy.id",
+          "title": "Emergency Termination Failed"
+        },
+        "displayName": "",
+        "nextStep": "End Step - Success",
+        "type": "action",
+        "versionNumber": 1
+      },
+      "Interactive Message 1": {
+        "actionId": "sp:interactive-message",
+        "attributes": {
+          "category": "ERROR",
+          "interactiveProcessId.$": "$.trigger.interactiveProcessId",
+          "message": "<p>Hello,<br><br>Immediate termination cannot be processed as this is a non person account.</p>\n<p>Thank You,<br>myAccess Support</p>",
+          "ownerId.$": "$.trigger.launchedBy.id",
+          "title": "Emergency Termination Failed"
+        },
+        "displayName": "",
+        "nextStep": "End Step - Success",
+        "type": "action",
+        "versionNumber": 1
+      },
+      "Send Email": {
+        "actionId": "sp:send-email",
+        "attributes": {
+          "body": "<p>Hello Team,<br><br>This is to inform you that {{$.getIdentity1.attributes.displayName}}, has been terminated effective today.</p>\n<p>Thank You,<br>myAccess Support</p>",
+          "context": {},
+          "recipientEmailList": [
+            "ujjwaljain@test.com"
+          ],
+          "subject": "[Action Required]: Emergency Termination"
+        },
+        "displayName": "",
+        "nextStep": "End Step - Success",
+        "type": "action",
+        "versionNumber": 2
+      },
+      "Send Email 1": {
+        "actionId": "sp:send-email",
+        "attributes": {
+          "body": "<p>Hello Team,<br><br>This is to inform you that immediate termination failed for user: {{$.getIdentity1.attributes.displayName}}.</p>\n<p>Thank You,<br>myAccess Support</p>",
+          "context": {},
+          "recipientEmailList": [
+            "ujjwaljain@test.com"
+          ],
+          "subject": "[Action Required]: Emergency Termination"
+        },
+        "displayName": "",
+        "nextStep": "End Step - Success",
+        "type": "action",
+        "versionNumber": 2
+      }
+    }
+  },
+  "enabled": false,
+  "executionCount": 11,
+  "failureCount": 4,
+  "trigger": {
+    "type": "EVENT",
+    "attributes": {
+      "filter.$": "$[?(@.workflowId == '18709cf4-34a5-479f-aee2-88a290272fb9')]",
+      "id": "idn:interactive-process-launched"
+    }
+  }
+}
