@@ -11,11 +11,12 @@ This workflow is triggered via Launchpad and uses identity information entered t
 Required Modifications
 
 Please update the following as needed:
-1. Modify the lifecycle state names used in the Compare String operators.
-2. Update the tenant name, client ID, client secret, and lifecycle state IDs in the HTTP Request action.
-3. Update the recipient email address in the Send Email action.
-4. Update the lifecycle state names in all Compare String operators (as applicable).
-5. Modify the email content to align with your requirements.
-6. Modify the forms as required to meet your specific business and validation needs.
+1. Modify the lifecycle state names used in the Compare String operators ("**Check if user is already in any of the inactive lifecycle state**", "**Check if user is in active lifecycle state**", "**Check if user is in prehire lifecycle state**").
+2. Update the tenant name, client ID, client secret, and lifecycle state IDs in the HTTP Request action ("**Change user's lifecycle state to terminated**", "**Change user's lifecycle state to rescinded**").
+3. Update the recipient email address and email content to align with your requirements in the Send Email action ("**Send success email**", "**Send failure email**").
+4. Update the authoritative source ID in "**Check if user belongs to Non Person Auth Source**" step, for the source where termination of users is not required, applicable to non-person identities. (This step is optional and may be omitted if not required.).
+5. Modify the forms ("**Emergency Termination - User Details Form**", "**Emergency Termination - User Selection Form**") as required to meet your specific business and validation needs.
+6. Modify the form inputs as required in the "**Display user details Form**" step.
+
 
 If you still need assistance, feel free to reach out to me on the community. My username is UjjwalJain
