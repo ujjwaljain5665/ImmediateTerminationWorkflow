@@ -1,6 +1,10 @@
 Immediate Termination Workflow
 
-This workflow is triggered via Launchpad and uses identity information entered through an interactive form to process terminations. It evaluates the user’s current lifecycle state and performs the following actions:
+This workflow is triggered via Launchpad and uses identity information entered through an interactive form to process terminations. 
+
+As only administrators have the privilege to change a user’s lifecycle state in SailPoint Identity Security Cloud (ISC), this workflow provides an alternative approach without granting admin access to end users. The workflow can be created using an admin or break-glass account PAT and exposed through Launchpad, allowing authorized end users or required teams to initiate termination requests securely without direct administrative privileges
+
+It evaluates the user’s current lifecycle state and performs the following actions:
 
 1. If the lifecycle state is Active, it transitions the identity to Terminated.
 2. If the lifecycle state is Prehire, it transitions the identity to Rescinded.
@@ -20,3 +24,4 @@ Please update the following as needed:
 
 
 If you still need assistance, feel free to reach out to me on the community. My username is UjjwalJain
+
