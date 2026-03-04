@@ -42,7 +42,7 @@
                 },
                 "elementType": "SELECT",
                 "id": "1275410742334",
-                "key": "adAccountId",
+                "key": "accountId",
                 "validations": [
                   {
                     "validationType": "DATA_SOURCE"
